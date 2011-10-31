@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Start Test - Sexting{% endblock %}
+{% block content %}
+	<div id="start">                                               
+		<h1 class="title">Click start test to begin.</h1>
+   	{% if error %}           
+			<div id="error">
+   			<h3>{{ error }}</h3>
+   		</div>                 
+   	{% endif %}              
+		<h3>Your random ID is:</h3>
+		<h5>{{ id }}</h5>
+		<a href="{{ url_for('test') }}" class="btn primary">Start Test</a>
+	</div>             
+{% endblock %}

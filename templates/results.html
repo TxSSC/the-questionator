@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Your results{% endblock %}
+{% block content %}
+	<div id="mainBody">
+	{% for message in get_flashed_messages() %}
+		<div class="flash">
+			<h4 class="error">{{ message }}</h4>
+		</div>
+	{% endfor %}
+	{% if score >= 70 %}
+		<h1 class="title">Your score is below:</h1>
+		<p><span class="results label success">{{ score }}% correct</span></p>
+		<button class="btn primary" onclick="window.print();">Print Score</button>
+	{% else %}
+		<h1 class="title"><span class="results label important">You made below a 70%</span></h1>
+		<a class="btn primary" href="http://www.google.com">Return to the Course</a>
+	{% endif %}
+	</div>
+{% endblock %}
