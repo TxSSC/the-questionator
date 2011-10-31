@@ -1,33 +1,33 @@
 <html>
-	<head>
-		<title>{% block title %}{% endblock %}</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
-		{% block morestyle %}{% endblock %}
-		{% block scripts %}{% endblock %}
-	</head>
-	<body>
-		<div id="wrapper">
-			<div id="header">
-				<div id="banner">
-					<img alt="tempbanner" src="http://www.txssc.txstate.edu/images/banner/TxSSC_banner.png" />
-				</div>
-				<h1>Texas Student Safety - Sexting Test</h1>
-				<h5>Only you can prevent sexting.</h5>
-			</div>
-			<div id="nav">
-				<ul>
-					<li><a href="{{ url_for('start') }}">Home</a></li>
-					<li><a href="sexting_information.html">Sexting Information</a></li>
-				</ul>
-			</div>
-			<div id="content">
-				{% block content %}{% endblock %}
-			</div>
-			<div id="footer">
-				<p class="disclaimer">Prototype - footer filler text here.</p>
-			</div>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
+    {% block morestyle %}{% endblock %}
+    {% block scripts %}{% endblock %}
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <div id="banner">
+          <img alt="tempbanner" src="http://www.txssc.txstate.edu/images/banner/TxSSC_banner.png" />
+        </div>
+        <h1>Texas Student Safety - Sexting Test</h1>
+        <h5>Only you can prevent sexting.</h5>
+      </div>
+      <div id="nav">
+        <ul>
+          <li><a href="{{ url_for('start') }}">Home</a></li>
+          <li><a href="sexting_information.html">Sexting Information</a></li>
+        </ul>
+      </div>
+      <div id="content">
+        {% block content %}{% endblock %}
+      </div>
+      <div id="footer">
+        <p class="disclaimer">Prototype - footer filler text here.</p>
+      </div>
     </div>
-	</body>
+  </body>
 </html>       
 
