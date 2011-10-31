@@ -20,3 +20,6 @@ class Grader():
         except KeyError:
             #question not found
             return -1
+
+    def iterAnswers(self):
+        return self.answers.iteritems()

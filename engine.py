@@ -93,17 +93,17 @@ def submit():
     gradeIt = Grader()
     total = 0
     score = 0
-    #loop through all keys in the form dict - grading assumes all answers are filled.
-    for name, value in request.form.iteritems():
-        result = gradeIt.gradeQuestion(name, value)
-        #if result == -1, the question wasn't found... carry on
-        if result != -1:
-            if result == 1:
-                score += 1
+    #loop through all keys in the form dict
+    for name, value in gradeIt.iterAnswers():
+        try:
+            if value == request.form[name]:
                 record.answers[name] = u'Correct'
+                score += 1
             else:
                 record.answers[name] = u'Wrong'
-            total += 1
+        except KeyError:
+            pass
+        total += 1
         
     try:
         score = float((score/total) * 100)
