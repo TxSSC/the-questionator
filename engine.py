@@ -1,3 +1,4 @@
+from pymongo import Connection
 import datetime
 from grader.grader import Grader
 import time
@@ -72,7 +73,10 @@ def start():
 def test():
     try:
         if session['id']:
-            return render_template('test.html')
+            conn = Connection() 
+            db = conn.sexting
+            questions = db.questions.find()
+            return render_template('test.html', questions=questions)
     except KeyError:
         return redirect(url_for('start'))
 
