@@ -1,7 +1,7 @@
 import json
 
 #relative to the runtime environment
-ANSWER_FILE = 'grader/answers.json'
+ANSWER_FILE = 'questionator/lib/answers.json'
 
 class Grader():
     #read in the json file
