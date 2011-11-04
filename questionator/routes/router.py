@@ -1,4 +1,4 @@
-from questionator.lib.grader import Grader
+from questionator.lib.grader import gradeTest
 import time
 import random
 from flask import request, session, redirect, url_for
@@ -63,29 +63,15 @@ def submit():
         flash('You have already submitted your test')
 
     #grade the test
-    gradeIt = Grader()
-    total = 0
-    score = 0
-    #loop through all keys in the form dict
-    for name, value in gradeIt.iterAnswers():
-        try:
-            if value == request.form[name]:
-                record.answers[name] = u'Correct'
-                score += 1
-            else:
-                record.answers[name] = u'Wrong'
-        except KeyError:
-            pass
-        total += 1
-        
-    try:
-        score = float((score/total) * 100)
-    except ZeroDivisionError:
-        score = 0
+    record = gradeTest(record, request.form)
 
-    record.score = score
-    record.save()
-    session['score'] = score
+    #save the record
+    try:
+        record.save()
+    except KeyError:
+        pass
+
+    session['score'] = record.score
 
     return redirect(url_for('results'))
 
