@@ -23,7 +23,7 @@ class Question(object):
             question['text'] = self.text
             question['name'] = self.name
             question['answers'] = self.answers
-            if self.database.questions.find({'name': self.name}).count() == 0:
+            if self.database.questions.find_one({'name': self.name}) == None:
                 self.database.questions.save(question)
             else:
                 raise KeyError('Duplicate name in questions')

@@ -21,7 +21,7 @@ class Submission(object):
             self.answers = submission['answers']
 
     def hasDuplicate(self):
-        if self.database.submissions.find({'id': self.uid}).count():
+        if self.database.submissions.find_one({'id': self.uid}):
             return True
         else:
             return False
