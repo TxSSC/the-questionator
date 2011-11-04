@@ -4,7 +4,6 @@ body { background-color: #EAF1FB;
 label { float: none;
 	text-align: left;
 	line-height: normal;
-	!important
 }
 
 #wrapper { position: relative;
@@ -34,6 +33,7 @@ label { float: none;
 
 #nav ul li { display: inline; 
 	     padding: 10px;
+	     line-height: normal;
 }
 
 #banner { margin-bottom: 0px;
@@ -128,4 +128,9 @@ label { float: none;
 
 .results { font-style: bold;
 	   font-size: 28px;
+}
+
+.question li { font-size: 14px;
+	       line-height: normal;
+	       color: #000000;
 }

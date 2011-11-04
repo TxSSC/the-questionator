@@ -11,5 +11,12 @@ def connectDB():
         db_port = 27017
         db_database = 'questionator'
     connection = Connection(db_host, db_port)
-    database = connection[db_database]
+    #block accounts for a unit testing != None
+    try:
+        if os.environ['TESTING'] != None:
+            database = connection['testing']
+        else:
+            database = connection['testing']
+    except KeyError:
+        database = connection[db_database]
     return database 
