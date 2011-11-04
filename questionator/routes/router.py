@@ -1,4 +1,4 @@
-from questionator.lib.grader import gradeTest
+from questionator.lib.tools import gradeTest
 import time
 import random
 from flask import request, session, redirect, url_for

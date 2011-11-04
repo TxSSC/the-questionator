@@ -1,10 +1,11 @@
-import model_helpers
 import datetime
+from questionator.lib.tools import connectDB
+
 
 class Submission(object):
     
     def __init__(self, submission=None):
-        self.database = model_helpers.connectDB()
+        self.database = connectDB()
         self.submission = {}
 
         if submission == None:
@@ -14,10 +15,8 @@ class Submission(object):
             self.answers = {}
         else:
             if type(submission['answers']) != dict:
-                raise KeyError('answers not a list')
+                raise KeyError('answers not a dict')
             self.uid= submission['id']
-            self.score = submission['score']
-            self.completed = submission['completed']
             self.answers = submission['answers']
 
     def hasDuplicate(self):
@@ -33,14 +32,17 @@ class Submission(object):
             submission['completed'] = datetime.datetime.now()
             submission['answers'] = self.answers
             submission['score'] = self.score
-            self.database.submissions.save(submission)
+            if not self.hasDuplicate():
+                self.database.submissions.save(submission)
+            else:
+                raise KeyError('ID already exists')
             return self
         else:
             raise KeyError('Invalid submission')
 
     @staticmethod
     def getSubmissions():
-        database = model_helpers.connectDB()
+        database = connectDB()
         subs = []
         for item in database.submissions.find():
             subs.append(item)

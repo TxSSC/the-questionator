@@ -1,10 +1,10 @@
-import model_helpers
+from questionator.lib.tools import connectDB
 
 
 class Question(object):
 
     def __init__(self, question=None):
-        self.database = model_helpers.connectDB()
+        self.database = connectDB()
         if question == None:
             self.text = None
             self.name = None
@@ -34,7 +34,7 @@ class Question(object):
 
     @staticmethod
     def getQuestions():
-        database = model_helpers.connectDB()
+        database = connectDB()
         questions = []
         for question in database.questions.find():
             questions.append(question)
