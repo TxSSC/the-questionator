@@ -133,4 +133,5 @@ label { float: none;
 .question li { font-size: 14px;
 	       line-height: normal;
 	       color: #000000;
+	       padding: 0px;
 }

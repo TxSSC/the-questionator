@@ -3,19 +3,19 @@
 {% block content %}
   <div id="test">
     <form action="{{ url_for('submit') }}" method="post">
+      <ol class="question">
       {% for question in questions %}
-        <ol class="question">
           <li>{{ question['text'] }}</li>
-        <fieldset class="answer">
-          {% for answer in question['answers'] %}
-          <input type="radio" name="{{ question['name'] }}" value="{{ answer['value'] }}" /><label>{{ answer['text'] }}</label>
-          {% if not loop.last %}
-          <br />
-          {% endif %}
-        {% endfor %}
-        </fieldset>
-        </ol>
+          <fieldset class="answer">
+            {% for answer in question['answers'] %}
+              <input type="radio" name="{{ question['name'] }}" value="{{ answer['value'] }}" /><label>{{ answer['text'] }}</label>
+              {% if not loop.last %}
+              <br />
+              {% endif %}
+            {% endfor %}
+          </fieldset>
       {% endfor %}
+      </ol>
       <input class="btn primary" type="submit" value="Submit Test" />
     </form>
   </div>
