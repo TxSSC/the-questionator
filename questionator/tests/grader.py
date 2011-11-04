@@ -30,11 +30,17 @@ class SubmissionTest(unittest.TestCase):
     
     def test_correct(self):
         answers = json.loads(open('../lib/answers.json', 'r').read())
-        s = {'id': 45}
-        s['answers'] = {"q1": "c", "q3": "b", "q2": "a", "q5": "d", "q4": "b", "q7": "a", "q6": "c", "q9": "d", "q8": "a", "q10": "d"}
-        sub = Submission(s)
+        sub = Submission()
+        sub.uid = 64
         sub = gradeTest(sub, answers)
         assert sub.score == float(100)
+
+    def test_fail(self):
+        answers = {"q1": "c", "q3": "b", "q2": "a", "q5": "d", "q4": "b", "q7": "w", "q6": "w", "q9": "w", "q8": "w", "q10": "w"}
+        sub = Submission()
+        sub.uid = 324
+        sub = gradeTest(sub, answers)
+        assert sub.score == float(50) 
 
 if __name__ == '__main__':
     unittest.main()

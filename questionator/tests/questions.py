@@ -4,8 +4,10 @@ import sys
 import os
 
 path = os.path.abspath(os.path.join(os.path.curdir, '../models'))
+question = os.path.abspath(os.path.join(os.path.curdir, '../../'))
 if path not in sys.path:
     sys.path.append(path)
+    sys.path.append(question)
 
 from question import Question
 

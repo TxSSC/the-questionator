@@ -15,8 +15,10 @@ class Submission(object):
             self.answers = {}
         else:
             if type(submission['answers']) != dict:
-                raise KeyError('answers not a dict')
+                raise KeyError('answers not a list')
             self.uid= submission['id']
+            self.score = submission['score']
+            self.completed = submission['completed']
             self.answers = submission['answers']
 
     def hasDuplicate(self):

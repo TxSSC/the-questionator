@@ -17,8 +17,8 @@ def gradeTest(submission,form):
     answers = open(ANSWER_FILE, 'r').read()
     answers = json.loads(answers)
     
-    total = 0
-    score = 0
+    total = float(0)
+    score = float(0)
     for name, value in answers.iteritems():
         try:
             if value == form[name]:
@@ -33,8 +33,8 @@ def gradeTest(submission,form):
         score = float((score/total) * 100)
     except ZeroDivisionError:
         score = 0
+    
     submission.score = score
-
     return submission
 
 
