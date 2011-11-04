@@ -10,8 +10,8 @@ from questionator import app
 #root route - generate random id
 @app.route('/')
 def start():
-    """Generate a random id from the systime
-     - Needs to be better, no too good
+    """Generate a random id from the systime and assign set id in the session
+    won't allow you to generate a new id on refresh.
     """
     #test session has been started
     try:
@@ -38,6 +38,8 @@ def start():
 #generate the test document
 @app.route('/test/')
 def test():
+    """Checks that id has been set in the session and renders the test template if so, if
+    id has not been set it redirects back to start."""
     try:
         if session['id']:
             return render_template('test.html', questions=Question.getQuestions())
@@ -48,6 +50,8 @@ def test():
 #grade the test
 @app.route('/test/submit/', methods=['POST'])
 def submit():
+    """Creates a new record, assigning it the id from the session, and grades the test using
+    questionator/lib/answers.json. After grading the test, it will set the score in the session to the users score."""
     record = Submission()
     try:
         record.uid = session['id']
@@ -88,6 +92,8 @@ def submit():
 
 @app.route('/test/results/')
 def results():
+    """If an id and score are not found in the session, redirect to start. Otherwise render 
+    the results template with id and score after popping id and score off the session"""
     try:
         id = session['id']
         score = session['score']
