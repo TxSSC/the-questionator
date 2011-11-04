@@ -8,7 +8,7 @@
           <li>{{ question['text'] }}</li>
         <fieldset class="answer">
           {% for answer in question['answers'] %}
-          <input type="radio" name="question['name']" value="answer['value']" /><label>{{ answer['text'] }}</lable>
+          <input type="radio" name="{{ question['name'] }}" value="{{ answer['value'] }}" /><label>{{ answer['text'] }}</label>
         {% endfor %}
         </fieldset>
         </ul>

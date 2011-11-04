@@ -5,7 +5,6 @@ class Question(object):
 
     def __init__(self, question=None):
         self.database = model_helpers.connectDB()
-        self.question = {}
         if question == None:
             self.text = None
             self.name = None
@@ -19,13 +18,13 @@ class Question(object):
                 raise KeyError('Invalid question object.')
 
     def save(self):
-        if self.question != None and self.name != None and self.answers != None:
+        if self.text != None and self.name != None and self.answers != None:
             question = {}
-            question['text'] = self.question
+            question['text'] = self.text
             question['name'] = self.name
             question['answers'] = self.answers
             if self.database.questions.find({'name': self.name}).count() == 0:
-                self.database.save(self.question)
+                self.database.questions.save(question)
             else:
                 raise KeyError('Duplicate name in questions')
         else:

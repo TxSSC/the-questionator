@@ -5,11 +5,10 @@ from flask import request, session, redirect, url_for
 from flask import render_template, flash, Blueprint
 from questionator.models.question import Question
 from questionator.models.submission import Submission
-
-blueprint = Blueprint('routes', __name__, template_folder='questionator/templates/', static_folder='questionator/templates/')
+from questionator import app
 
 #root route - generate random id
-@blueprint.route('/')
+@app.route('/')
 def start():
     """Generate a random id from the systime
      - Needs to be better, no too good
@@ -37,7 +36,7 @@ def start():
 
 
 #generate the test document
-@blueprint.route('/test/')
+@app.route('/test/')
 def test():
     try:
         if session['id']:
@@ -47,7 +46,7 @@ def test():
 
 
 #grade the test
-@blueprint.route('/test/submit/', methods=['POST'])
+@app.route('/test/submit/', methods=['POST'])
 def submit():
     record = Submission()
     try:
@@ -87,7 +86,7 @@ def submit():
     return redirect(url_for('results'))
 
 
-@blueprint.route('/test/results/')
+@app.route('/test/results/')
 def results():
     try:
         id = session['id']

@@ -1,4 +1,5 @@
 import model_helpers
+import datetime
 
 class Submission(object):
     
@@ -26,14 +27,13 @@ class Submission(object):
             return False
 
     def save(self):
-        if self.submission['id'] != None and self.submission['score'] != None \
-                and self.submission['completed'] != None:
+        if self.uid != None and self.score != None:
             submission = {}
             submission['id'] = self.uid
             submission['completed'] = datetime.datetime.now()
             submission['answers'] = self.answers
             submission['score'] = self.score
-            self.database.save(submission)
+            self.database.submissions.save(submission)
             return self
         else:
             raise KeyError('Invalid submission')
