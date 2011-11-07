@@ -16,7 +16,14 @@
           </fieldset>
       {% endfor %}
       </ol>
-      <input class="btn primary" type="submit" value="Submit Test" />
+      {% if pagination.has_prev %}
+        <a class="btn previous" href="{{ url_for_page(page - 1) }}">Previous Page</a>
+      {% endif %}
+      {% if pagination.has_next %}
+        <a class="btn success next" href="{{ url_for_page(page + 1) }}">Next Page</a>
+      {% else %}
+        <input class="btn primary submit" type="submit" value="Submit Test" /> 
+      {% endif %}
     </form>
   </div>
 {% endblock %}

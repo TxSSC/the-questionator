@@ -43,7 +43,7 @@ def test(page):
             PER_PAGE = 10
             #paginate questions
             paginate = Paginator(page, PER_PAGE, num_questions)
-            return render_template('test.html', questions=Question.getPage(page, PER_PAGE), pagination=paginate)
+            return render_template('test.html', questions=Question.getPage(page, PER_PAGE), pagination=paginate, page=page)
 
     except KeyError:
         return redirect(url_for('start'))

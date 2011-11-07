@@ -3,7 +3,7 @@ import json
 import random
 import time
 from pymongo import Connection
-from flask import request
+from flask import request, url_for
 from math import ceil
 
 
@@ -86,7 +86,7 @@ class Paginator(object):
     
     @property
     def pages(self):
-        return int(ceil(self.total_count / float(self.per_page)))
+        return int(ceil(self.total / float(self.per_page)))
 
     @property
     def has_prev(self):

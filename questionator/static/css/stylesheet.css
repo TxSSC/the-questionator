@@ -74,9 +74,6 @@ label { float: none;
 #test { background-color: #EAF1FB;
 }
 
-#test input[type="submit"] { margin-left: 65%;
-}
-
 #start { padding: 0px;
          margin-top: 0px;
          margin-bottom: 0px;
@@ -134,4 +131,10 @@ label { float: none;
 	       line-height: normal;
 	       color: #000000;
 	       padding: 0px;
+}
+
+.btn.success.next  { margin-left: 60%;
+}
+
+.previous { 
 }
