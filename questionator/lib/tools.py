@@ -1,8 +1,8 @@
-import json
 import os
 
 
 def gradeTest(submission,form):
+    import json
     """Submission is a Submission() model, form is the default form dict of flask
     this function will return the submission object back after it has been graded."""
     #relative to the runtime environment - debug for testing
