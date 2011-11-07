@@ -21,12 +21,6 @@ class Submission(object):
             self.completed = submission['completed']
             self.answers = submission['answers']
 
-    def hasDuplicate(self):
-        if self.database.submissions.find_one({'id': self.uid}):
-            return True
-        else:
-            return False
-
     def save(self):
         if self.uid != None and self.score != None:
             submission = {}
@@ -34,7 +28,7 @@ class Submission(object):
             submission['completed'] = datetime.datetime.now()
             submission['answers'] = self.answers
             submission['score'] = self.score
-            if not self.hasDuplicate():
+            if not Submission.hasDuplicate(self.uid):
                 self.database.submissions.save(submission)
             else:
                 raise KeyError('ID already exists')
@@ -49,3 +43,11 @@ class Submission(object):
         for item in database.submissions.find():
             subs.append(item)
         return subs
+
+    @staticmethod
+    def hasDuplicate(uid):
+        database = connectDB()
+        if database.submissions.find_one({'id': uid}):
+            return True
+        else:
+            return False 

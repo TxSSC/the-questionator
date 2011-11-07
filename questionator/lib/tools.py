@@ -1,14 +1,26 @@
 import os
+import json
+import random
+import time
+from pymongo import Connection
+from flask import request
+from math import ceil
+
+
+def generateID():
+    epoch = int(time.time())
+    rand = random.Random(epoch)
+    randId = rand.randint(0, 10000)
+    return randId
 
 
 def gradeTest(submission,form):
-    import json
     """Submission is a Submission() model, form is the default form dict of flask
     this function will return the submission object back after it has been graded."""
     #relative to the runtime environment - debug for testing
     try:
         if os.environ['TESTING'] != None:
-            ANSWER_FILE = '../lib/answers.json'
+            ANSWER_FILE = './answers.json'
         else:
             ANSWER_FILE = 'questionator/lib/answers.json'
     except KeyError:
@@ -38,10 +50,7 @@ def gradeTest(submission,form):
     return submission
 
 
-
 def connectDB():
-    from pymongo import Connection
-
     try:
         db_host = os.environ['MONGODB_HOST']
         db_port = int(os.environ['MONGODB_PORT'])
@@ -60,4 +69,40 @@ def connectDB():
             database = connection['testing']
     except KeyError:
         database = connection[db_database]
-    return database 
+    return database
+
+#helper for pagination
+def url_for_page(page):
+    args = request.view_args.copy()
+    args['page'] = page
+    return url_for(request.endpoint, **args)
+
+
+class Paginator(object):
+    def __init__(self, page, per_page, total):
+        self.page = page
+        self.per_page = per_page
+        self.total = total
+    
+    @property
+    def pages(self):
+        return int(ceil(self.total_count / float(self.per_page)))
+
+    @property
+    def has_prev(self):
+        return self.page > 1
+
+    @property
+    def has_next(self):
+        return self.page < self.pages
+
+    def iter_pages(self, left_edge=2, left_current=2,right_current=5,
+            right_edge=2):
+        last = 0
+        for num in range(1, self.pages + 1):
+            if num <= left_edge or (num > self.page - left_current - 1 and num < self.page + right_current) or num > self.pages - right_edge:
+                if last + 1 != num:
+                    yield None
+                yield num
+                last = num
+

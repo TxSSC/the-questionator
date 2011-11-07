@@ -48,7 +48,7 @@ class SubmissionTest(unittest.TestCase):
             sub.save()
         except KeyError, e:
             print 'Failed trying to save duplicate: %s' % e
-        assert sub.hasDuplicate()
+        assert Submission.hasDuplicate(sub.uid)
         assert sub.uid == s['id'] and sub.completed == s['completed'] and sub.score == s['score'] and sub.answers == s['answers']
 
     def test_getSubmissions(self):

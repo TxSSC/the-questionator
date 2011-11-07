@@ -29,7 +29,7 @@ class SubmissionTest(unittest.TestCase):
 
     
     def test_correct(self):
-        answers = json.loads(open('../lib/answers.json', 'r').read())
+        answers = json.loads(open('./answers.json', 'r').read())
         sub = Submission()
         sub.uid = 64
         sub = gradeTest(sub, answers)

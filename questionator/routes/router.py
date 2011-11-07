@@ -1,10 +1,8 @@
-from questionator.lib.tools import gradeTest
-import time
-import random
 from flask import request, session, redirect, url_for
 from flask import render_template, flash, Blueprint
 from questionator.models.question import Question
 from questionator.models.submission import Submission
+from questionator.lib.tools import gradeTest, Paginator, generateID
 from questionator import app
 
 #root route - generate random id
@@ -20,15 +18,10 @@ def start():
     except KeyError:
         pass
 
-    epoch = int(time.time())
-    rand = random.Random(int(time.time()))
-    randId = rand.randint(0, 10000)
-    submission = Submission()
-    submission.uid = randId
+    randId = generateID()
     #continue to generate a new id if records are returned
-    while (submission.hasDuplicate()):
-        randId = rand.randint(0, 10000)
-        submission.uid = randId
+    while (Submission.hasDuplicate(randId)):
+        randId = generateID()
     
     #start the session
     session['id'] = randId
@@ -36,13 +29,22 @@ def start():
 
 
 #generate the test document
-@app.route('/test/')
-def test():
+@app.route('/test/', defaults={'page': 1})
+@app.route('/test/page/<int:page>')
+def test(page):
     """Checks that id has been set in the session and renders the test template if so, if
     id has not been set it redirects back to start."""
     try:
         if session['id']:
-            return render_template('test.html', questions=Question.getQuestions())
+            num_questions = Question.questionCount()
+            if not num_questions:
+                abort(404)
+            #how many questions per page?
+            PER_PAGE = 10
+            #paginate questions
+            paginate = Paginator(page, PER_PAGE, num_questions)
+            return render_template('test.html', questions=Question.getPage(page, PER_PAGE), pagination=paginate)
+
     except KeyError:
         return redirect(url_for('start'))
 
@@ -59,7 +61,7 @@ def submit():
         return redirect(url_for('start'))
 
     #check to make sure they haven't submitted the test multiple times
-    if (record.hasDuplicate()):
+    if (Submission.hasDuplicate(record.uid)):
         flash('You have already submitted your test')
 
     #grade the test
