@@ -30,7 +30,7 @@ def gradeTest(submission,form):
             pass
         total += 1
     try:
-        score = float((score/total) * 100)
+        score = round(((score/total) * 100), 2)
     except ZeroDivisionError:
         score = 0
     
