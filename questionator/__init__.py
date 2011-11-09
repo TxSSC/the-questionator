@@ -1,10 +1,11 @@
 import os
-from flask import Flask
+from flask import Flask, session
 from questionator.lib.tools import url_for_page
 
 app = Flask(__name__)
 app.config.from_pyfile('settings.cfg')
 app.jinja_env.globals['url_for_page'] = url_for_page
+app.jinja_env.globals['session'] = session
 #import all the routes/controller
 import routes.router
 

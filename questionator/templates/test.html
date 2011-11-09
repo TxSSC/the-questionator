@@ -1,29 +1,49 @@
-{% extends 'base.html' %}
-{% block title %}Sexting Test{% endblock %}
-{% block content %}
+{%- extends 'base.html' -%}
+{%- from 'macros.html' import input_check -%} 
+{%- block title -%}Sexting Test{%- endblock -%}
+{%- block scripts -%}
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.6.4.js') }}"></script> 
+  <script type="text/javascript">
+      $(document).ready(function()
+          {
+          $(".previous").click(function()
+            {
+              $("#test > form").attr("action", $(this).attr("href"));
+              $(this).removeAttr("href");
+              $("#test > form").submit();
+            });
+          });
+  </script>
+{%- endblock -%}
+{%- block content %}
   <div id="test">
-    <form action="{{ url_for('submit') }}" method="post">
+    {% if pagination.has_next -%}          
+      <form action="{{ url_for_page(page + 1) }}" method="post">
+    {% else -%}
+      <form action="{{ url_for('submit') }}" method="post">
+    {% endif -%}
       <ol class="question">
-      {% for question in questions %}
+      {%- for question in questions %}
           <li>{{ question['text'] }}</li>
           <fieldset class="answer">
-            {% for answer in question['answers'] %}
-              <input type="radio" name="{{ question['name'] }}" value="{{ answer['value'] }}" /><label>{{ answer['text'] }}</label>
-              {% if not loop.last %}
-              <br />
-              {% endif %}
-            {% endfor %}
+            {% for answer in question['answers'] -%}
+              {{ input_check(question['name'], answer['value']) }}
+              <label>{{ answer['text'] }}</label>
+              {%- if not loop.last %}
+                <br />
+              {% endif -%}
+            {%- endfor -%}
           </fieldset>
-      {% endfor %}
+      {%- endfor -%}
       </ol>
-      {% if pagination.has_prev %}
+      {% if pagination.has_prev -%}
         <a class="btn previous" href="{{ url_for_page(page - 1) }}">Previous Page</a>
-      {% endif %}
-      {% if pagination.has_next %}
-        <a class="btn success next" href="{{ url_for_page(page + 1) }}">Next Page</a>
-      {% else %}
-        <input class="btn primary submit" type="submit" value="Submit Test" /> 
-      {% endif %}
-    </form>
+      {%- endif %}
+      {% if pagination.has_next -%}
+        <input class="btn success next" type="submit" value="Next Page" />
+      {%- else -%}
+        <input class="btn primary submit" type="submit" value="Submit Test" />
+      {%- endif %}
+      </form>
   </div>
-{% endblock %}
+{%- endblock -%}

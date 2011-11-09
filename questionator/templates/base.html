@@ -3,8 +3,8 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
-    {% block morestyle %}{% endblock %}
-    {% block scripts %}{% endblock %}
+    {% block morestyle -%}{%- endblock -%}
+    {% block scripts -%}{%- endblock %}
   </head>
   <body>
     <div id="wrapper">
@@ -22,7 +22,7 @@
         </ul>
       </div>
       <div id="content">
-        {% block content %}{% endblock %}
+        {%- block content -%}{%- endblock %}
       </div>
       <div id="footer">
         <p class="disclaimer">Prototype - footer filler text here.</p>

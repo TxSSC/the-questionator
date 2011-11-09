@@ -17,7 +17,7 @@ if lib not in sys.path or models not in sys.path or question not in sys.path:
 from tools import gradeTest
 from submission import Submission
 
-class SubmissionTest(unittest.TestCase):
+class GraderTest(unittest.TestCase):
 
     def setUp(self):
         os.environ['TESTING'] = '1'
