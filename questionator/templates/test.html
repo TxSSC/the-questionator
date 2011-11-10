@@ -22,7 +22,7 @@
     {% else -%}
       <form action="{{ url_for('submit') }}" method="post">
     {% endif -%}
-      <ol class="question">
+      <ul class="question">
       {%- for question in questions %}
           <li>{{ question['text'] }}</li>
           <fieldset class="answer">
@@ -35,7 +35,7 @@
             {%- endfor -%}
           </fieldset>
       {%- endfor -%}
-      </ol>
+      </ul>
       {% if pagination.has_prev -%}
         <a class="btn previous" href="{{ url_for_page(page - 1) }}">Previous Page</a>
       {%- endif %}
