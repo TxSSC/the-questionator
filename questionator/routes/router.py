@@ -84,8 +84,8 @@ def submit():
     try:
         record.save()
     except KeyError:
-        #TODO: Log on save failure
-        pass
+        #log on record save failure
+        app.logger.error('Record %d failed to save.', record.uid)
 
     session['score'] = record.score
 
