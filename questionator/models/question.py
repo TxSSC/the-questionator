@@ -50,6 +50,6 @@ class Question(object):
     @staticmethod
     def getPage(page, per_page):
         database = connectDB()
-        cursor = database.questions.find().sort('name').skip((page - 1) * per_page).limit(per_page)
+        cursor = database.questions.find().sort('_id').skip((page - 1) * per_page).limit(per_page)
         for question in cursor:
             yield question
