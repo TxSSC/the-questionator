@@ -17,7 +17,7 @@ if lib not in sys.path or models not in sys.path or question not in sys.path:
 from tools import gradeTest
 from submission import Submission
 
-class SubmissionTest(unittest.TestCase):
+class GraderTest(unittest.TestCase):
 
     def setUp(self):
         os.environ['TESTING'] = '1'
@@ -29,7 +29,7 @@ class SubmissionTest(unittest.TestCase):
 
     
     def test_correct(self):
-        answers = json.loads(open('../lib/answers.json', 'r').read())
+        answers = json.loads(open('./answers.json', 'r').read())
         sub = Submission()
         sub.uid = 64
         sub = gradeTest(sub, answers)

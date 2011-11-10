@@ -1,0 +1,7 @@
+{%- macro input_check(question, answer) -%}
+  {%- if session.has_key('test') and session['test'].has_key(question) and session['test'][question] == answer -%}
+    <input type="radio" name="{{ question }}" value="{{ answer }}" checked="checked" />
+  {%- else -%}
+    <input type="radio" name="{{ question }}" value="{{ answer }}" />
+  {%- endif -%}
+{%- endmacro -%}

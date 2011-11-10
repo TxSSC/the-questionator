@@ -34,9 +34,22 @@ class Question(object):
 
     @staticmethod
     def getQuestions():
+        #use a generator for the iterable of questions
         database = connectDB()
         questions = []
         for question in database.questions.find():
             questions.append(question)
 
         return questions
+
+    @staticmethod
+    def questionCount():
+        database = connectDB()
+        return database.questions.count()
+
+    @staticmethod
+    def getPage(page, per_page):
+        database = connectDB()
+        cursor = database.questions.find().sort('_id').skip((page - 1) * per_page).limit(per_page)
+        for question in cursor:
+            yield question
