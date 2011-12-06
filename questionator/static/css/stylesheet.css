@@ -1,4 +1,4 @@
-body { background-color: #EAF1FB;
+html, body { background-color: #EAF1FB;
 }
 
 label { float: none;
@@ -66,9 +66,9 @@ label { float: none;
 #content { padding-top: 20px;
 	   margin-top: 0px;
 	   margin-bottom: 0px;
-	   margin-left: 30%;
-	   margin-right: 30%;
-	   max-width: 600px;
+	   margin-left: 15%;
+	   margin-right: 15%;
+	   max-width: 800px;
 }
 
 #test { background-color: #EAF1FB;
@@ -84,7 +84,6 @@ label { float: none;
 }
 
 #test form { text-align: left;
-	     max-width: 800px;
 	     margin-top: 0px;
 	     margin-bottom: 0px;
 	     margin-left: 0px;
