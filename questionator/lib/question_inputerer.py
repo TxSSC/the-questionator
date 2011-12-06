@@ -14,10 +14,10 @@ from questionator.lib.tools import connectDB
 def get_questions():
     count = int(raw_input('Number of questions to enter: '))
     answers = {}
-    for i in range(count):
+    for i in range(0, count):
         question = Question()
         question.name = 'q' + str(i)
-        question.text = raw_input('Enter question #' + str(i) + ': ')
+        question.text = raw_input('Enter question #' + str(i+1) + ': ')
         question.answers = []
         
         items = 'abcde'
@@ -26,8 +26,8 @@ def get_questions():
             answer['text'] = raw_input('Enter answer ' + c + ': ')
             answer['value'] = c
             question.answers.append(answer)
-            cont = raw_input('Enter another question(y/n)?: ')
-            if 'y' not in cont:
+            cont = raw_input('Enter another answer(n to exit)?: ')
+            if 'n' in cont:
                 break
         #get the correct answer
         cor = raw_input('What letter was the correct answer for this question?: ')
@@ -40,7 +40,7 @@ def get_questions():
             
     
     #write the answers to answers.json.temp
-    answers_file = open('./lib/answers.json.temp', 'r')
+    answers_file = open('answers.json.temp', 'w')
     answers_file.write(json.dumps(answers))
     answers_file.close()
 
