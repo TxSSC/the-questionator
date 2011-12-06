@@ -61,12 +61,12 @@ def connectDB():
         db_database = 'questionator'
     connection = Connection(db_host, db_port)
     
-    #debug for a unit testing != None
+    #debug for unit testing != None
     try:
         if os.environ['TESTING'] != None:
             database = connection['testing']
         else:
-            database = connection['testing']
+            database = connection[db_database]
     except KeyError:
         database = connection[db_database]
     return database

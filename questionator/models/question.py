@@ -1,5 +1,17 @@
 from questionator.lib.tools import connectDB
 
+#Question format 
+# {
+#   name: 'q1'
+#   text: 'Question 1'
+#   answers:
+#       [
+#           {
+#               value: 'a'
+#               text: 'Answer a'
+#           }
+#       ]
+# }
 
 class Question(object):
 
