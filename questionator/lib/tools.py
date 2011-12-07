@@ -27,17 +27,24 @@ def gradeTest(submission,form):
         ANSWER_FILE = 'questionator/lib/answers.json'     #read in the json file
 
     answers = open(ANSWER_FILE, 'r').read()
-    answers = json.loads(answers)
+    try:
+        answers = json.loads(answers)
+    except ValueError:
+        #no answers found
+        submission.score = 0
+        return submission
     
     total = float(0)
     score = float(0)
     for name, value in answers.iteritems():
+        submission.answers[name] = []
         try:
             if value == form[name]:
-                submission.answers[name] = 'Correct'
+                submission.answers[name].append('Correct')
                 score += 1
             else:
-                submission.answers[name] = 'Wrong'
+                submission.answers[name].append('Wrong')
+            submission.answers[name].append(form[name])
         except KeyError:
             pass
         total += 1
