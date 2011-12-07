@@ -51,8 +51,9 @@ def test(page):
 
         #how many questions per page? 
         PER_PAGE = 10                 
-        #randomize the questions per page
+        #randomize the questions per page, seeded by uid
         questions = Question.getPage(page, PER_PAGE)
+        random.seed(session['id'])
         random.shuffle(questions)
         #paginate questions
         paginate = Paginator(page, PER_PAGE, num_questions)
