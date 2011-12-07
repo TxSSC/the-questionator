@@ -26,7 +26,7 @@
           <fieldset class="answer">
             {% for answer in question['answers'] -%}
               {{ input_check(question['name'], answer['value']) }}
-              <label>{{ answer['value'] + '. ' +answer['text'] }}</label>
+              <label>{{ answer['text'] }}</label>
               {%- if not loop.last %}
                 <br />
               {% endif -%}

@@ -63,5 +63,7 @@ class Question(object):
     def getPage(page, per_page):
         database = connectDB()
         cursor = database.questions.find().sort('_id').skip((page - 1) * per_page).limit(per_page)
+        questions = []
         for question in cursor:
-            yield question
+            questions.append(question)
+        return questions

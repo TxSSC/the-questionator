@@ -1,9 +1,11 @@
+import random
 from flask import request, session, redirect, url_for
 from flask import render_template, flash, Blueprint
 from questionator.models.question import Question
 from questionator.models.submission import Submission
 from questionator.lib.tools import gradeTest, Paginator, generateID
 from questionator import app
+
 
 #root route - generate random id
 @app.route('/')
@@ -46,11 +48,16 @@ def test(page):
             for k, v in request.form.iteritems():
                 temp_test[k] = v
             session['test'] = temp_test
-        #how many questions per page?
-        PER_PAGE = 10
+
+        #how many questions per page? 
+        PER_PAGE = 10                 
+        #randomize the answers
+        questions = Question.getPage(page, PER_PAGE)
+        for question in questions:
+            random.shuffle(question['answers'])
         #paginate questions
         paginate = Paginator(page, PER_PAGE, num_questions)
-        return render_template('test.html', questions=Question.getPage(page, PER_PAGE), pagination=paginate)
+        return render_template('test.html', questions=questions, pagination=paginate)
 
     else:
         return redirect(url_for('start'))
