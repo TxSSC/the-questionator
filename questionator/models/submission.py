@@ -1,6 +1,21 @@
 import datetime
 from questionator.lib.tools import connectDB
 
+#Submission format:
+# {
+#   "id": GenerateID(),
+#   "completed": Datetime,
+#   "score": float,
+#   "answers":
+#       [
+#           {
+#               "q1": ["wrong", "a"]
+#           },
+#           {
+#               "q2": ["correct", "d"]
+#           }
+#       ]
+# }
 
 class Submission(object):
     
