@@ -3,7 +3,7 @@ from flask import Flask, session
 from questionator.lib.tools import url_for_page
 
 app = Flask(__name__)
-app.config.from_pyfile('settings.cfg')
+app.config.from_pyfile('config/app_settings.conf')
 app.jinja_env.globals['url_for_page'] = url_for_page
 app.jinja_env.globals['session'] = session
 
