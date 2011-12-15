@@ -45,18 +45,17 @@ def bootstrap():
                 subprocess.call(['virtualenv', virtualenv])
             except OSError:
                 print('virtualenv not found')
-                
+        print('virtual environment created. installing packages.')
+
+        try:
+            subprocess.call(pip_args)
+        except OSError:
+            pip_args[0] = 'pip-python'
+
             try:
                 subprocess.call(pip_args)
             except OSError:
-                pip_args[0] = 'pip-python'
-    
-                try:
-                    subprocess.call(pip_args)
-                except OSError:
-                    print('pip not found')
-        else:
-            print('%s already exists. nothing to do.' % virtualenv)
+                print('pip not found')
 
 
 if __name__ == '__main__':
