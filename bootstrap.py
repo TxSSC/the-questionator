@@ -27,16 +27,29 @@ def main():
     virtualenv = os.environ['VIRTUAL_ENV']
 
     if options.init:
-        subprocess.call(['virtualenv', virtualenv])
+        try:
+            subprocess.call(['virtualenv', virtualenv])
+        except OSError:
+            print('virtualenv not found')
     
     if options.clear:
-        subprocess.call(['virtualenv', '--clear', '--distribute', virtualenv])
+        try:
+            subprocess.call(['virtualenv', '--clear', '--distribute', virtualenv])
+        except OSError:
+            print('virtualenv not found')
     
-    pip_args = ['pip-python', 'install', '-E', virtualenv, '--requirement', 'questionator/config/requirements.txt']
+    pip_args = ['pip', 'install', '-E', virtualenv, '--requirement', 'questionator/config/requirements.txt']
 
     if options.upgrade:
         pip_args.append('--upgrade')
-        subprocess.call(pip_args)
+        try:
+            subprocess.call(pip_args)
+        except OSError:
+            pip_args[0] = 'pip-python'
+            try:
+                subprocess.call(pip_args)
+            except OSError:
+                print('pip is needed to be installed')
 
 
 if __name__ == '__main__':
