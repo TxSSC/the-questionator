@@ -9,12 +9,10 @@ def deploy():
     with settings(warn_only=True):
         if run('test -d %s' % APP_DIR).failed:
             run('git clone git@github.com:/TxSSC/the-questionator.git %s' % APP_DIR)
-            run('export VIRTUAL_ENV="%s"' % VIRTUAL_ENV)
-            run('python bootstrap.py --upgrade')
     with cd(APP_DIR):
         run('git pull')
         run('export VIRTUAL_ENV="%s"' % VIRTUAL_ENV)
-        run('python bootstrap.py --upgrade')
+        run('python bootstrap.py --install')
 
 
 def clean_env():
@@ -30,7 +28,7 @@ def reload():
 
 def stop():
     with cd(APP_DIR):
-        run('kill -INT `find . -name "questionator.pid" -exec cat {} \;`')
+        run('kill -SIGINT `find . -name "questionator.pid" -exec cat {} \;`')
 
 
 def start():

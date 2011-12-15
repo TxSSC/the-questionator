@@ -34,10 +34,12 @@ def bootstrap():
     if options.install:
         if not os.path.isdir(virtualenv):
             print('creating and installing to virtual environment: %s' % virtualenv)
-            try:
-                subprocess.call(['mkdir', 'run'])
-            except OSError:
-                pass
+
+            if not os.path.isdir('run'):
+                try:
+                    subprocess.call(['mkdir', 'run'])
+                except OSError:
+                    print('unable to create run directory')
 
             try:
                 subprocess.call(['virtualenv', virtualenv])
@@ -52,7 +54,7 @@ def bootstrap():
                 try:
                     subprocess.call(pip_args)
                 except OSError:
-                    print('pip is needed to be installed')
+                    print('pip not found')
         else:
             print('%s already exists. nothing to do.' % virtualenv)
 
