@@ -1,7 +1,7 @@
 from fabric.api import run, cd, settings
 
 
-APP_DIR = '/home/Vanetix/Documents/projects/testing/'
+APP_DIR = '~/projects'
 VIRTUAL_ENV = 'venv'
 
 
@@ -9,12 +9,11 @@ def deploy():
     with settings(warn_only=True):
         if run('test -d %s' % APP_DIR).failed:
             run('git clone git@github.com:/TxSSC/the-questionator.git %s' % APP_DIR)
-            run('mkdir run')
             run('export VIRTUAL_ENV="%s"' % VIRTUAL_ENV)
-            run('python bootstrap.py --init')
             run('python bootstrap.py --upgrade')
     with cd(APP_DIR):
         run('git pull')
+        run('export VIRTUAL_ENV="%s"' % VIRTUAL_ENV)
         run('python bootstrap.py --upgrade')
 
 
