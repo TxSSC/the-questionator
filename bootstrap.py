@@ -32,19 +32,20 @@ def bootstrap():
     pip_args = ['pip', 'install', '-E', virtualenv, '--requirement', 'questionator/config/requirements.txt', '--upgrade']
 
     if options.install:
-        if not os.path.isdir(virtualenv):
-            print('creating and installing to virtual environment: %s' % virtualenv)
+        if not os.path.isdir('shared'):
+            try:
+                subprocess.call(['mkdir', 'shared'])
+            except OSError:
+                print('unable to create shared directory')
 
-            if not os.path.isdir('run'):
-                try:
-                    subprocess.call(['mkdir', 'run'])
-                except OSError:
-                    print('unable to create run directory')
+         if not os.path.isdir(virtualenv):
+            print('creating and installing to virtual environment: %s' % virtualenv)
 
             try:
                 subprocess.call(['virtualenv', virtualenv])
             except OSError:
                 print('virtualenv not found')
+
         print('virtual environment created. installing packages.')
 
         try:
