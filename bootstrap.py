@@ -34,14 +34,19 @@ def main():
     
     if options.clear:
         try:
-            subprocess.call(['virtualenv', '--clear', '--distribute', virtualenv])
+            subprocess.call(['virtualenv', '--clear', virtualenv])
         except OSError:
             print('virtualenv not found')
     
-    pip_args = ['pip', 'install', '-E', virtualenv, '--requirement', 'questionator/config/requirements.txt']
+    pip_args = ['pip', 'install', '-E', virtualenv, '--requirement', 'questionator/config/requirements.txt', '--upgrade']
 
     if options.upgrade:
-        pip_args.append('--upgrade')
+        if not os.path.isdir(virtualenv):
+            print('virtual environment not initialized. initializing...')
+            try:
+                subprocess.call(['virtualenv', virtualenv])
+            except OSError:
+                print('virtualenv not found')
         try:
             subprocess.call(pip_args)
         except OSError:
