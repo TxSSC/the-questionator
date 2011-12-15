@@ -11,7 +11,7 @@ app.jinja_env.globals['session'] = session
 if not app.debug:
     import logging
     from logging import FileHandler, Formatter
-    handler = FileHandler('questionator/questionator.error.log', mode='a')
+    handler = FileHandler('shared/questionator.error.log', mode='a')
     log_format = Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
     handler.setFormatter(log_format)
     handler.setLevel(logging.WARNING)
