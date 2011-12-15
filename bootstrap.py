@@ -38,7 +38,7 @@ def bootstrap():
             except OSError:
                 print('unable to create shared directory')
 
-         if not os.path.isdir(virtualenv):
+        if not os.path.isdir(virtualenv):
             print('creating and installing to virtual environment: %s' % virtualenv)
 
             try:
