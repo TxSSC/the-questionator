@@ -9,11 +9,9 @@ from optparse import OptionParser
 usage = 'usage: %prog [options]'
 parser = OptionParser(usage=usage)
 parser.add_option('-c', '--clear', dest='clear', action='store_true',
-                help='clear out existing virtualenv')
-parser.add_option('-i', '--init', dest='init', action='store_true',
-                help='Initialize virtual env')
-parser.add_option('-u', '--upgrade', dest='upgrade', action='store_true',
-                help='Upgrade')
+                help='Clear VIRTUAL_ENV')
+parser.add_option('-i', '--install', dest='install', action='store_true',
+                help='Install VIRTUAL_ENV')
 
 
 def bootstrap():
