@@ -25,8 +25,10 @@ def main():
     
     (options, pos_args) = parser.parse_args()
     virtualenv = os.environ['VIRTUAL_ENV']
+    
 
     if options.init:
+        subprocess.call(['mkdir', 'run'])
         try:
             subprocess.call(['virtualenv', virtualenv])
         except OSError:
