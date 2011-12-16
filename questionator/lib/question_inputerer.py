@@ -3,7 +3,7 @@ import json
 import os
 import sys
 
-path = os.path.join(os.getcwd(), '../../'))
+path = os.getcwd()
 if path not in sys.path:
     sys.path.append(path)
 
