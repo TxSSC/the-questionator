@@ -1,0 +1,121 @@
+/* Foundation v2.1.3 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Typeography
+:: Test
+:: Media Queries;
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+#main-nav {
+  background: #222;
+  padding: 15px 20px;
+  border-bottom: 4px solid #00A6FC;
+}
+
+  #main-nav h1 {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+    #main-nav h1 a { color: #fff; }
+
+  #main-nav ul { margin-bottom: 0; }
+
+    #main-nav li {
+      float: left;
+      margin: 0 20px 0 0;
+    }
+
+      #main-nav li:last-child { margin-right: 0; }
+
+      #main-nav li a {
+        display: block;
+        line-height: 14px;
+        color: #fff;
+        font-weight: 500;
+      }
+
+
+.section-header {
+  margin: 0 0 40px 0;
+  padding: 30px 0 0 0;
+  border-bottom: solid 1px #ccc;
+}
+
+  .section-header h1 {
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+    .section-header .subheader {
+      margin-bottom: 9px;
+      color: #777;
+      font-weight: 300;
+    }
+
+
+/* -----------------------------------------
+   Typeography
+----------------------------------------- */
+
+li { 
+  font-size: 14px; 
+  line-height: 18px; 
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+h4 { margin-bottom: 12px; }
+
+
+/* -----------------------------------------
+   Test
+----------------------------------------- */
+
+ol#question-list {
+  margin-left: 0;
+  font-size: 14px;
+  margin-left: 30px;
+}
+
+  li.question {
+    margin-bottom: 25px;
+    border-bottom: solid 1px #ccc;
+  }
+    
+    li.question p { font-weight: 600; }
+
+    li.question ul { margin-bottom: 25px; }
+
+      li.question li { position: relative; }
+
+        li.question li input { float: left; }
+
+        li.question li span { 
+          font-size: 14px; 
+          display: block;
+          margin-left: 25px;
+          line-height: 1.5em;
+        }
+
+input.button { font-size: 13px; }
+
+/* -----------------------------------------
+   Media Queries
+----------------------------------------- */
+
+@media only screen and (max-width: 860px) {
+  .nice.tabs.vertical dd a { font-size: 12px; }
+}

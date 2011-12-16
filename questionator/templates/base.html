@@ -1,34 +1,80 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
-    {% block morestyle -%}{%- endblock -%}
-    {% block scripts -%}{%- endblock %}
-  </head>
-  <body>
-    <div id="wrapper">
-      <div id="header">
-        <div id="banner">
-          <img alt="tempbanner" src="http://www.txssc.txstate.edu/images/banner/TxSSC_banner.png" />
-        </div>
-        <h1>Texas Student Safety - Sexting Test</h1>
-        <h5>Only you can prevent sexting.</h5>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/foundation.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <script src="{{ url_for('static', filename='js/modernizr-2.0.6.min.js') }}"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header id="main-nav" class="container">
+    <div class="row">
+      <div class="four columns">
+        <h1><a href="/">Before You Text...</a></h1>
       </div>
-      <div id="nav">
-        <ul>
-          <li><a href="{{ url_for('start') }}">Home</a></li>
-          <li><a href="sexting_information.html">Sexting Information</a></li>
+
+      <nav class="eight columns hide-on-phones">
+        <ul class="right unstyled">
+          <li><a href="http://beforeyoutext.com">Home</a></li>
+          <li><a href="http://beforeyoutext.com/table-of-contents.html">Table of Contents</a></li>
+          <li><a href="http://beforeyoutext.com/glossary.html">Glossary</a></li>
+          <li><a href="#">Test</a></li>
         </ul>
-      </div>
-      <div id="content">
-        {%- block content -%}{%- endblock %}
-      </div>
-      <div id="footer">
-        <p class="disclaimer">Prototype - footer filler text here.</p>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- container -->
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <div class="section-header">
+          <h1>Summary</h1>
+          <h4 class="subheader">Summary and Test</h4>
+        </div>
       </div>
     </div>
-  </body>
+
+    <div class="row">
+
+      <!-- Section Navigation -->
+      <div class="two columns">
+        <dl class="nice tabs vertical hide-on-phones">
+          <dd><a href="http://beforeyoutext.com">Intro</a></dd>
+          <dd><a href="http://beforeyoutext.com/table-of-contents.html">Table of Contents</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/1.html">Module 1</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/2.html">Module 2</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/3.html">Module 3</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/4.html">Module 4</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/5.html">Module 5</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/6.html">Module 6</a></dd>
+          <dd><a href="http://beforeyoutext.com/modules/7.html">Module 7</a></dd>
+          <dd><a href="http://test.beforeyoutext.com" class="active">Summary</a></dd>
+        </dl>
+      </div>
+
+      <div class="ten columns">
+        {%- block content -%}{%- endblock %}
+      </div>
+    </div>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script defer src="/static/js/script.js"></script>
+
+</body>
 </html>       
 
