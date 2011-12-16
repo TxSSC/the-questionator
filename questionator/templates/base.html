@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/stylesheet.css') }}" />
-    {% block morestyle -%}{%- endblock -%}
-    {% block scripts -%}{%- endblock %}
-  </head>
   <body>
     <div id="wrapper">
       <div id="header">
@@ -15,6 +7,18 @@
         </div>
         <h1>Texas Student Safety - Sexting Test</h1>
         <h5>Only you can prevent sexting.</h5>
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/foundation.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <script src="{{ url_for('static', filename='js/modernizr-2.0.6.min.js') }}"></script>
+</head>
       </div>
       <div id="nav">
         <ul>
@@ -29,6 +33,13 @@
         <p class="disclaimer">Prototype - footer filler text here.</p>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/static/js/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script defer src="/static/js/script.js"></script>
+
+</body>
 </html>       
 

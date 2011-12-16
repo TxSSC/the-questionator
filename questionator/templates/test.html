@@ -1,18 +1,6 @@
 {%- extends 'base.html' -%}
 {%- from 'macros.html' import input_check -%} 
 {%- block title -%}Sexting Test{%- endblock -%}
-{%- block scripts -%}
-  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.6.4.js') }}"></script> 
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $(".previous").click(function() {
-              $("#test > form").attr("action", $(this).attr("href"));
-              $(this).removeAttr("href");
-              $("#test > form").submit();
-            });
-      });
-  </script>
-{%- endblock -%}
 {%- block content %}
   <div id="test">
     {% if pagination.has_next -%}          
