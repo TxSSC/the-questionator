@@ -18,5 +18,7 @@
       <a class="nice radius red button" href="/">Return to the Course</a>
     {% endif %}
   </div>
-  {% include 'certificate.html' %}
+  {% if score >= 80 %}
+    {% include 'certificate.html' %}
+  {% endif %}
 {% endblock %}
