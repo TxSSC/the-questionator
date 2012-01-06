@@ -11,13 +11,14 @@
 
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/foundation.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" media="screen"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/print.css') }}" media="print"/>
 
   <script src="{{ url_for('static', filename='js/modernizr-2.0.6.min.js') }}"></script>
 </head>
 <body>
   <!-- Header -->
-  <header id="main-nav" class="container">
+  <header id="main-nav" class="container noPrint">
     <div class="row">
       <div class="four columns">
         <h1><a href="/">Before You Text...</a></h1>
@@ -37,7 +38,7 @@
 
   <!-- container -->
   <div class="container">
-    <div class="row">
+    <div class="row noPrint">
       <div class="twelve columns">
         <div class="section-header">
           <h1>Summary</h1>
@@ -49,7 +50,7 @@
     <div class="row">
 
       <!-- Section Navigation -->
-      <div class="two columns">
+      <div class="two columns noPrint">
         <dl class="nice tabs vertical hide-on-phones">
           <dd><a href="http://beforeyoutext.com">Intro</a></dd>
           <dd><a href="http://beforeyoutext.com/table-of-contents.html">Table of Contents</a></dd>

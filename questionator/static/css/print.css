@@ -1,0 +1,60 @@
+/* -----------------------------------------
+   Certificate
+----------------------------------------- */
+
+@page {
+   size: landscape;
+}
+
+.noPrint { display: none; }
+
+#certificate {
+  width: 100%;
+  margin: 14px;
+  padding: 25px;
+  border: 6px solid #00b4ff;
+}
+
+  #certificate h1 {
+    width: 610px;
+    height: 80px;
+    margin: 0 auto;
+  }
+
+  #certificate #issued {
+    margin: 75px auto 60px auto;
+    width: 80%;
+    text-align: center;
+  }
+
+    #certificate #issued p#certID {
+      border-bottom: 1px solid #00b4ff;
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #181818;
+      line-height: 28px;
+    }
+
+    #certificate #issued h3 {
+      font-size: 50px;
+    }
+
+  #certificate #signature {
+    margin: 56px auto 0 auto;
+    width: 25%;
+    text-align: center;
+  }
+
+    #certificate #signature p#line {
+      width: 179px;
+      height: 33px;
+      margin: 0 auto;
+      border: none;
+      padding: 0;
+    }
+
+    #certificate #signature p {
+      border-top: 1px solid #00b4ff;
+      padding-top: 8px;
+    }
