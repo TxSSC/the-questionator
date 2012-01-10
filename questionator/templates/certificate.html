@@ -4,13 +4,23 @@
 
   <div id="issued">
     
-    <p>Issue this certificate to<p>
+    <p>Issues this certificate to<p>
 
-    <p id="certID">{{id}}</p>
+    <p id="certID">&nbsp;</p>
 
     <p>In recognition of successful completion of the requirements for the</p>
 
     <h3>Sexting Prevention Educational Program</h3>
+
+    <p id="date">
+      <script type="text/javascript">
+        var currentTime = new Date();
+        var month = currentTime.getMonth() + 1;
+        var day = currentTime.getDate();
+        var year = currentTime.getFullYear();
+        document.write(month + "/" + day + "/" + year);
+      </script>
+    </p>
 
   </div>
 
