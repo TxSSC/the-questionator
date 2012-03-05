@@ -17,8 +17,8 @@
             {% for answer in question['answers'] -%}
               <li>
                 <label>
-                  <span>{{ answer['text'] }}</span>
                   {{ generate_question(question['name'], answer['value']) }}
+                  <span>{{ key[loop.index] }}. {{ answer['text'] }}</span>
                 </label>
               </li>
             {%- endfor -%}
