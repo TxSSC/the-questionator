@@ -1,5 +1,5 @@
 {%- extends 'base.html' -%}
-{%- from 'macros.html' import input_check -%} 
+{%- from 'macros.html' import generate_question -%} 
 {%- block title -%}Sexting Test{%- endblock -%}
 {%- block content %}
   <div id="test" class="row">
@@ -13,11 +13,12 @@
         <li class="question">
           <p>{{ question['text'] }}</p>
           <ul>
+            {% set key = { 1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F' } -%}
             {% for answer in question['answers'] -%}
               <li>
                 <label>
-                  {{ input_check(question['name'], answer['value']) }}
-                  <span>{{ answer['text'] }}</span>
+                  {{ generate_question(question['name'], answer['value']) }}
+                  <span>{{ key[loop.index] }}. {{ answer['text'] }}</span>
                 </label>
               </li>
             {%- endfor -%}
