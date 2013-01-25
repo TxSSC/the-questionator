@@ -9,7 +9,7 @@ A small flask app built to serve anonymous quiz style questionnaires.
 ## Install
 - Navigate to the base repo directory `cd [questionator repo dir]`
 - Run the bootstrap if no virtual environment is installed
-  - Set the virtual environment name with `export VIRTIAL_ENV=[name]`
+  - Set the virtual environment name with `export VIRTUAL_ENV=[name]`
   - Then run `./bootstrap -i` to install required packages
 
 ## Running
