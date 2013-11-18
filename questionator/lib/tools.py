@@ -1,18 +1,15 @@
 import os
 import json
-import random
 import time
+import binascii
 from pymongo import Connection
 from flask import request, url_for
 from math import ceil
 
 
 def generateID():
-    epoch = int(time.time())
-    rand = random.Random(epoch)
-    randId = rand.randint(0, 10000)
-    return randId
-
+    randBytes = os.urandom(4)
+    return binascii.hexlify(randBytes)
 
 def gradeTest(submission,form):
     """Submission is a Submission() model, form is the default form dict of flask
