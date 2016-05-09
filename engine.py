@@ -1,4 +1,7 @@
+import os
+
 from questionator import app
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=2000)
+    port = os.environ.get('PORT', 3000)
+    app.run(host='127.0.0.1', port=int(port))
